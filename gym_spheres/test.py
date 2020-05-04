@@ -13,10 +13,10 @@ env.render()
 
 n_steps = 500
 
-for _ in xrange(n_steps):
+for _ in range(n_steps):
 	env.render()
 	action = sample_action()
 	state, reward, done, info = env.step(action)
 
-raw_input('press Enter to exit')
+input('press Enter to exit')
 env.close()

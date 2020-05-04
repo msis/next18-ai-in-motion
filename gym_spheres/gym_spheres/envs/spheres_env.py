@@ -143,7 +143,7 @@ class SpheresEnv(gym.Env):
     @staticmethod
     def heading_to_vector(heading):
         # heading is in radians
-        return Vec2d((math.cos(heading), math.sin(heading)))    
+        return Vec2d((math.cos(heading), math.sin(heading)))
 
 
     def _state(self):
@@ -170,7 +170,7 @@ class SpheresEnv(gym.Env):
         state = sphere_position + target_position + chaser_position + obstacle_positions
 
         # normalized
-        state = np.array(state) / (self.shape * (len(state) / 2))
+        state = np.array(state) / (self.shape * (len(state) // 2))
 
         # add random noise
         if self.noisy:
@@ -261,7 +261,7 @@ class SpheresEnv(gym.Env):
         h = np.matmul(rotation, [height, 0])
 
         c = np.array(self._sample_center())
-        
+
         vs = np.array([
             c + w/2 + h/2,
             c + w/2 - h/2,
@@ -280,12 +280,12 @@ class SpheresEnv(gym.Env):
             self.screen = pygame.Surface((self.width, self.height))
 
         self.draw_options = pymunk.pygame_util.DrawOptions(self.screen)
-        
+
         self.clock = pygame.time.Clock()
 
         self.space = pymunk.Space()
         self.space.damping = self.damping
-        
+
 
     def _reset_walls(self):
         wall_size = 5.0
@@ -385,7 +385,7 @@ class SpheresEnv(gym.Env):
 
 
     def _reset_obstacles(self):
-        for i in xrange(self.n_obstacles):
+        for i in range(self.n_obstacles):
             body, shape = self._make_block('white')
 
             self.space.add(shape)
@@ -403,7 +403,7 @@ class SpheresEnv(gym.Env):
         self.space.add(shape)
 
 
-    def _reset(self):  
+    def _reset(self):
         self.n_steps = 0
         self.aggressiveness = random.random()
 

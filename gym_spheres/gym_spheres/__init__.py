@@ -13,7 +13,6 @@
 # limitations under the License.
 
 from gym.envs.registration import register
-import envs
 
 register(
     id='Spheres-v0',
